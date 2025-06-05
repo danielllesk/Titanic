@@ -1,0 +1,13 @@
+import React from 'react'
+
+// Title of webpage
+function Header(){
+    return ( 
+        <div id='title'>
+        <h1>Tatanic</h1>
+        <p> Find personalized scholarships </p>
+        </div>
+    );
+}
+
+export default Header;
