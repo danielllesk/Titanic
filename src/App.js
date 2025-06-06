@@ -1,14 +1,14 @@
 import './App.css';
 import Header from './components/header';
 import About from './components/about';
-import Info from './components/personal-info';
+import SectionHandler from './components/section-handler';
 
 function App() {
   return (
     <div className="App">
       <Header />
       <About />
-      <Info />
+      <SectionHandler />
     </div>
   );
 }

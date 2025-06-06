@@ -1,6 +1,6 @@
 import React from 'react'
 
-function inputinfo()  {
+function Inputinfo({ onNext })  {
     const handleSubmit = (e) => {
     e.preventDefault(); //prevent form from refreshing the page
 
@@ -106,10 +106,10 @@ function inputinfo()  {
                     <input type='text' id='inputActivities' placeholder='List volunteer work, leadership roles, jobs, awards, etc.'/>
                     </div>
                 </div>
-                <button type='submit' id='submitButton'>Continue to Resume Upload</button>
+                <button type='submit' id='submitButton' onClick={onNext}>Continue to Resume Upload</button>
             </form>
         </section>
     )
 }
 
-export default inputinfo;
+export default Inputinfo;
