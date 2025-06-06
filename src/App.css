@@ -64,3 +64,72 @@ body {
   bottom: 20px;
   position: relative;
 }
+
+#personal p {
+  bottom: 15px;
+  position: relative;
+}
+
+#personal h3 {
+  bottom: 10px;
+  position: relative;
+}
+
+form {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-groups {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+form input {
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-wrap: wrap;
+}
+
+form label {
+  bottom: 10px;
+  position: relative;
+  font-weight: 500;
+}
+
+#inputActivities {
+  width: 100%;
+  padding: 20px;
+  resize: vertical;
+  box-sizing: border-box;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.5;
+  text-align: left;
+}
+
+#submitButton {
+  width: 100%;
+  background-color: #111;
+  color: white;
+  margin: 1rem;
+  align-items: center;
+  border-radius: 5px;
+  padding: 0.5rem;
+  display: block;
+  margin: auto;
+  cursor: pointer;
+  transition: background-color 1s;
+}
+
+#submitButton:hover {
+  background-color: #2d2c2c;
+}
