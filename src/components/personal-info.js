@@ -75,7 +75,7 @@ function Inputinfo({ onNext })  {
                     </div>
                     <div className='form-groups'>
                 <label for='phone'> Education Level *</label>
-                    <select name="education" id="inputEducation" required>
+                    <select name="education" id="inputEducation"  required>
                         <option value='none' selected disabled hidden> Select education level </option>
                         <option value='high school'>High School</option>
                         <option value='college'>College/CEGEP</option>
