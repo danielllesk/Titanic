@@ -21,8 +21,8 @@ function ParseResume( {onBack} ) {
         <section id='resume'>
         <h2>Upload Resume</h2>
         <form action='/action_page.php' id='resumeForm' onSubmit={handleSubmit}>
-            <label for="img"> Select Resume: </label>
-            <input type='file' id='parse' name='resumeupload' accept='.pdf, .jpeg, .png, .pdf'/>
+            <label for="img"> Select Resume * </label>
+            <input type='file' id='parse' name='resumeupload' accept='.pdf, .jpeg, .png, .pdf' required/>
             <input id='resumesubmit' type='submit' value='Upload'/>
         </form>
         <button type='back' onClick={onBack}> Back </button>

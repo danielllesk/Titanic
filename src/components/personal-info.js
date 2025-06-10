@@ -106,7 +106,7 @@ function Inputinfo({ onNext })  {
                     <input type='text' id='inputActivities' placeholder='List volunteer work, leadership roles, jobs, awards, etc.'/>
                     </div>
                 </div>
-                <button type='submit' id='submitButton' onClick={onNext}>Continue to Resume Upload</button>
+                <input type='submit' id='submitButton' onClick={onNext} value="Continue to Resume Upload"/>
             </form>
         </section>
     )

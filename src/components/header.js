@@ -4,7 +4,7 @@ import React from 'react'
 function Header(){
     return ( 
         <div id='title'>
-        <h1>Tatanic</h1>
+        <h1>Titanic</h1>
         <p> Find personalized scholarships </p>
         </div>
     );
