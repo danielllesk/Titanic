@@ -1,6 +1,6 @@
-# 🎓 Tatanic
+# 🎓 Titanic
 
-**Tatanic** is a centralized scholarship database platform designed to help **high school and university students** discover funding opportunities tailored to their background, field of study, and academic performance. Find your scholarSHIPS using Titanic!
+**Titanic** is a centralized scholarship database platform designed to help **high school and university students** discover funding opportunities tailored to their background, field of study, and academic performance. Find your scholarSHIPS using Titanic!
 
 ## 🌟 Features
 
