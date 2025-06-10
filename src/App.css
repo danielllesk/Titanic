@@ -151,3 +151,13 @@ form label {
   bottom: 10px;
   position: relative;
 }
+
+#resumesubmit {
+  background-color: #111;
+  transition: background-color 1s;
+  color: white;
+}
+
+#resumesubmit:hover {
+  background-color: #2d2c2c;
+}
