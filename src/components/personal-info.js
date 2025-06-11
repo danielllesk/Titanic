@@ -35,7 +35,7 @@ function Inputinfo({ onNext })  {
         { id: 'inputCity' },
         { id: 'inputAge' },
         { id: 'inputEducation' },
-        { id: 'inputFinance' }
+        {id: 'inputStudy'}
     ];
 
     return (
@@ -98,8 +98,8 @@ function Inputinfo({ onNext })  {
                     </select>
                     </div>
                      <div className='form-groups'>
-                <label for='study'> Field of Study </label>
-                    <input type='text' id='inputStudy'/>
+                <label for='study'> Field of Study * </label>
+                    <input type='text' id='inputStudy' required/>
                     </div>
                     <div className='form-groups'>
                 <label for='gpa'> GPA (if applicable) </label>
