@@ -25,7 +25,7 @@
 
 ## 🚀 Project Status
 
-🧠 In planning phase
+⚒️ Development phase
 
 ## 🤝 Contributors
 
