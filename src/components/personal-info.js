@@ -1,4 +1,5 @@
 import React from 'react'
+import NextButton from './next-button'
 
 function Inputinfo({ onNext })  {
     const handleSubmit = (e) => {
@@ -24,6 +25,19 @@ function Inputinfo({ onNext })  {
     localStorage.setItem("userProfile", JSON.stringify(userData));
     alert("user data saved");
 };
+
+    const requiredFields = [
+        { id: 'inputFirst' },
+        { id: 'inputLast' },
+        { id: 'inputEmail' },
+        { id: 'inputPhone' },
+        { id: 'inputProvince' },
+        { id: 'inputCity' },
+        { id: 'inputAge' },
+        { id: 'inputEducation' },
+        { id: 'inputFinance' }
+    ];
+
     return (
         <section id='personal'> 
             <h3>Personal Information</h3>
@@ -106,7 +120,11 @@ function Inputinfo({ onNext })  {
                     <input type='text' id='inputActivities' placeholder='List volunteer work, leadership roles, jobs, awards, etc.'/>
                     </div>
                 </div>
-                <input type='submit' id='submitButton' onClick={onNext} value="Continue to Resume Upload"/>
+                <NextButton 
+                    requiredFields={requiredFields}
+                    onNext={onNext}
+                    buttonText="Continue to Resume Upload"
+                />
             </form>
         </section>
     )
