@@ -30,5 +30,5 @@
 ## 🤝 Contributors
 
 -Daniel Eskandar
--Sahil gawk
+-Sahil Gokhale
 
