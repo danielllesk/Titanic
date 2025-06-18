@@ -58,7 +58,7 @@ function Inputinfo({ onNext })  {
                     </div>
                     <div className='form-groups'>
                 <label for='phone'> Phone Number *</label>
-                    <input type='number' id='inputPhone' required/>
+                    <input type='number' id='inputPhone' maxlength='10' required/>
                     </div>
                     <div className='form-groups'>
                 <label for='phone'> Province/Territory *</label>
