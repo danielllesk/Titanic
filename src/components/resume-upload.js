@@ -17,7 +17,8 @@ function ParseResume({ onBack, onNext }) {
         { id: 'parse' }
     ];
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         if (!file) {
             alert("Please add a resume");
             return;
@@ -25,7 +26,7 @@ function ParseResume({ onBack, onNext }) {
         const formData = new FormData();
         formData.append("resume", file);
         try {
-            const res = await fetch("http://localhost:3000/components/parse-resume", { // API backend, sends uploaded resume to backend
+            const res = await fetch("http://localhost:5000/parse-resume", { // API backend, sends uploaded resume to backend
                 method: "POST", // POST request for formData to use file uploaded
                 body: formData,
         });
@@ -48,7 +49,7 @@ function ParseResume({ onBack, onNext }) {
             <h2>Upload Resume</h2>
             <form action='/action_page.php' id='resumeForm' onSubmit={handleSubmit}>
                 <label for="img"> Select Resume * </label>
-                <input type='file' id='parse' name='resumeupload' accept='.pdf' 
+                <input type='file' id='parse' name='resume' accept='.pdf' 
                 onChange={handleFileChange} required/>
                 <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
                     <button type='button' onClick={onBack}>Back</button>

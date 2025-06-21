@@ -161,3 +161,14 @@ form label {
 #resumesubmit:hover {
   background-color: #2d2c2c;
 }
+
+#scholarships {
+  margin: 1.5rem auto;
+  padding: 0.5rem;
+  max-width: 700px;
+  background-color: #f5f9ff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  bottom: 20px;
+  position: relative;
+}
