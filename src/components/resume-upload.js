@@ -26,33 +26,46 @@ function ParseResume({ onBack, onNext }) {
         const formData = new FormData();
         formData.append("resume", file);
         try {
-            const res = await fetch("http://localhost:5000/parse-resume", { // API backend, sends uploaded resume to backend
-                method: "POST", // POST request for formData to use file uploaded
+            const res = await fetch("http://localhost:5000/parse-resume", {
+                method: "POST",
                 body: formData,
-        });
-        if(!res.ok) {
-            const text = await res.text();
-            console.error("Error: ", text)
-            return;
+            });
+            if(!res.ok) {
+                const text = await res.text();
+                console.error("Error: ", text)
+                return;
+            }
+            const parsedData = await res.json();
+            console.log("Parsed Resume: ", parsedData);
+            localStorage.setItem("parsedResume", JSON.stringify(parsedData));
+        } catch (error) {
+            console.error(error);
+            alert("Error: " + error.message);
         }
-        const parsedData = await res.json(); // returns promise that is a javascript object e.g. all the parsed resume data
-        console.log("Parsed Resume: ", parsedData);
-        localStorage.setItem("parsedResume", JSON.stringify(parsedData));
-    } catch (error) {
-        console.error(error);
-        alert("Error: " + error.message);
     }
-}
 
     return (
-        <section id='resume'>
-            <h2>Upload Resume</h2>
-            <form action='/action_page.php' id='resumeForm' onSubmit={handleSubmit}>
-                <label for="img"> Select Resume * </label>
+        <section id='resume' style={{ margin: '1.5rem auto', padding: '0.5rem', maxWidth: '700px', backgroundColor: '#f5f9ff', borderRadius: '16px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <h2 style={{ marginBottom: '1rem', fontSize: '1.3rem' }}>Upload Resume</h2>
+            <form id='resumeForm' onSubmit={handleSubmit} style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <label htmlFor="parse" style={{ marginBottom: '1rem', fontWeight: 500, fontSize: '1rem', alignSelf: 'flex-start' }}> Select Resume * </label>
                 <input type='file' id='parse' name='resume' accept='.pdf' 
-                onChange={handleFileChange} required/>
-                <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
-                    <button type='button' onClick={onBack}>Back</button>
+                    onChange={handleFileChange} required
+                    style={{ marginBottom: '1.5rem', padding: '8px', borderRadius: '4px', background: '#fff', boxShadow: '0 2px 8px #eee', width: '100%' }}
+                />
+                <div style={{ display: 'flex', gap: '10px', marginTop: '20px', width: '100%', justifyContent: 'center' }}>
+                    <button type='button' onClick={onBack}
+                        style={{
+                            padding: '10px 20px',
+                            backgroundColor: '#007bff',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '5px',
+                            cursor: 'pointer',
+                            fontSize: '1rem',
+                            transition: 'background-color 0.3s ease'
+                        }}
+                    >Back</button>
                     <NextButton 
                         requiredFields={requiredFields}
                         onNext={onNext}
