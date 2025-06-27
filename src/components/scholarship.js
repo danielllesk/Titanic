@@ -40,21 +40,34 @@ function Scholarship({ onBack }) {
             <h2 style={{ marginBottom: '1rem', fontSize: '1.3rem' }}>Find Canadian Scholarships</h2>
             <p style={{ marginBottom: '1.5rem' }}>Click below to find Canadian scholarships tailored to your profile.</p>
             {scholarships.length === 0 && (
-                <button type="button" onClick={handleFindScholarships} disabled={loading}
-                    style={{
-                        padding: '10px 20px',
-                        backgroundColor: loading ? '#cccccc' : '#007bff',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '5px',
-                        cursor: loading ? 'not-allowed' : 'pointer',
-                        fontSize: '1rem',
-                        marginBottom: '1.5rem',
-                        transition: 'background-color 0.3s ease'
-                    }}
-                >
-                    {loading ? 'Finding...' : 'Find Scholarships'}
-                </button>
+                <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginBottom: '1.5rem' }}>
+                    <button type="button" onClick={onBack}
+                        style={{
+                            padding: '10px 20px',
+                            backgroundColor: '#6c757d',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '5px',
+                            cursor: 'pointer',
+                            fontSize: '1rem',
+                            transition: 'background-color 0.3s ease'
+                        }}
+                    >Back</button>
+                    <button type="button" onClick={handleFindScholarships} disabled={loading}
+                        style={{
+                            padding: '10px 20px',
+                            backgroundColor: loading ? '#cccccc' : '#007bff',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '5px',
+                            cursor: loading ? 'not-allowed' : 'pointer',
+                            fontSize: '1rem',
+                            transition: 'background-color 0.3s ease'
+                        }}
+                    >
+                        {loading ? 'Finding...' : 'Find Scholarships'}
+                    </button>
+                </div>
             )}
             {error && <div style={{ color: 'red', marginBottom: '1rem' }}>{error}</div>}
             {scholarships.length > 0 && (

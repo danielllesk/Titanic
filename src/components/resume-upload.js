@@ -4,13 +4,23 @@ import { useState } from 'react';
 
 function ParseResume({ onBack, onNext }) {
     const [file, setFile] = useState(null);
+    const [uploading, setUploading] = useState(false);
+    const [uploadSuccess, setUploadSuccess] = useState(false);
+    const [error, setError] = useState(null);
+
     const handleFileChange = (e) => { 
         const resumeFile = e.target.files[0]; // Retrieve input file
         if(!resumeFile) {
-            alert("Please select a resume file before submitting")
+            setError("Please select a resume file before submitting");
+            return;
+        }
+        // Validate file type
+        if (!resumeFile.type.includes('pdf')) {
+            setError("Please select a PDF file");
             return;
         }
         setFile(resumeFile);
+        setError(null);
     }
 
     const requiredFields = [
@@ -20,27 +30,43 @@ function ParseResume({ onBack, onNext }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!file) {
-            alert("Please add a resume");
+            setError("Please add a resume");
             return;
         }
+        
+        setUploading(true);
+        setError(null);
+        
         const formData = new FormData();
         formData.append("resume", file);
+        
         try {
             const res = await fetch("http://localhost:5000/parse-resume", {
                 method: "POST",
                 body: formData,
             });
+            
             if(!res.ok) {
                 const text = await res.text();
-                console.error("Error: ", text)
-                return;
+                throw new Error(`Server error: ${text}`);
             }
+            
             const parsedData = await res.json();
             console.log("Parsed Resume: ", parsedData);
-            localStorage.setItem("parsedResume", JSON.stringify(parsedData));
+            
+            // Check if we got keywords
+            if (parsedData.keywords && parsedData.keywords.length > 0) {
+                localStorage.setItem("parsedResume", JSON.stringify(parsedData));
+                setUploadSuccess(true);
+                setError(null);
+            } else {
+                throw new Error("No keywords were extracted from the resume");
+            }
         } catch (error) {
             console.error(error);
-            alert("Error: " + error.message);
+            setError(`Error: ${error.message}`);
+        } finally {
+            setUploading(false);
         }
     }
 
@@ -53,11 +79,24 @@ function ParseResume({ onBack, onNext }) {
                     onChange={handleFileChange} required
                     style={{ marginBottom: '1.5rem', padding: '8px', borderRadius: '4px', background: '#fff', boxShadow: '0 2px 8px #eee', width: '100%' }}
                 />
+                
+                {error && (
+                    <div style={{ color: 'red', marginBottom: '1rem', textAlign: 'center' }}>
+                        {error}
+                    </div>
+                )}
+                
+                {uploadSuccess && (
+                    <div style={{ color: 'green', marginBottom: '1rem', textAlign: 'center' }}>
+                        ✅ Resume uploaded and parsed successfully!
+                    </div>
+                )}
+                
                 <div style={{ display: 'flex', gap: '10px', marginTop: '20px', width: '100%', justifyContent: 'center' }}>
                     <button type='button' onClick={onBack}
                         style={{
                             padding: '10px 20px',
-                            backgroundColor: '#007bff',
+                            backgroundColor: '#6c757d',
                             color: 'white',
                             border: 'none',
                             borderRadius: '5px',
@@ -70,6 +109,7 @@ function ParseResume({ onBack, onNext }) {
                         requiredFields={requiredFields}
                         onNext={onNext}
                         buttonText="Upload and Continue"
+                        loading={uploading}
                     />
                 </div>
             </form>

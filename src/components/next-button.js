@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function NextButton({ requiredFields, onNext, buttonText = "Next" }) {
+function NextButton({ requiredFields, onNext, buttonText = "Next", loading = false }) {
     const [isValid, setIsValid] = useState(false);
 
     useEffect(() => {
@@ -49,18 +49,18 @@ function NextButton({ requiredFields, onNext, buttonText = "Next" }) {
         <button
             type="submit"
             onClick={onNext}
-            disabled={!isValid}
+            disabled={!isValid || loading}
             style={{
                 padding: '10px 20px',
-                backgroundColor: isValid ? '#007bff' : '#cccccc',
+                backgroundColor: (isValid && !loading) ? '#007bff' : '#cccccc',
                 color: 'white',
                 border: 'none',
                 borderRadius: '5px',
-                cursor: isValid ? 'pointer' : 'not-allowed',
+                cursor: (isValid && !loading) ? 'pointer' : 'not-allowed',
                 transition: 'background-color 0.3s ease'
             }}
         >
-            {buttonText}
+            {loading ? 'Processing...' : buttonText}
         </button>
     );
 }
